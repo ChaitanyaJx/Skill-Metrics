@@ -17,7 +17,7 @@ const App = () => {
     <div className="min-h-screen bg-white text-gray-900 flex flex-col">
       <nav className="bg-white p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-80 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
-          <span className="text-xl font-bold text-pink-500">SkillMetrics</span>
+          <span className="text-2xl font-bold text-pink-500">SkillMetrics</span>
           <div className="space-x-4">
             <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Home</Button>
             <DropdownMenu>
@@ -43,7 +43,7 @@ const App = () => {
       </nav>
 
       <main className="flex-grow flex items-center justify-center p-4 bg-gradient-to-r from-purple-100 to-blue-100">
-        <Card className="w-full max-w-md bg-white border-gray-200 shadow-lg">
+        <Card className="w-full max-w-md bg-white border-gray-200 shadow-lg scale-125">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
               Welcome to SkillMetrics
