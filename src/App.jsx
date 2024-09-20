@@ -11,6 +11,44 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import React, { useState, useEffect } from 'react';
+import './App.css';
+
+function App() {
+  // Set the default theme to 'light'
+  const [theme, setTheme] = useState('light');
+
+  // Check for the saved theme in local storage when the app loads
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  // Toggle between light and dark theme
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme); // Save preference in localStorage
+  };
+
+  return (
+    <div className={`app ${theme}`}>
+      <header>
+        <h1>My Portfolio</h1>
+        <button onClick={toggleTheme}>
+          Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
+      </header>
+      <main>
+        <p>Welcome to my portfolio website!</p>
+      </main>
+    </div>
+  );
+}
+
+export default App;
 
 const App = () => {
   return (
