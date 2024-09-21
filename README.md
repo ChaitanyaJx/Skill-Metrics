@@ -18,3 +18,7 @@ Tailwind CSS: https://www.youtube.com/watch?v=tS7upsfuxmo
 
 ShadCN: 
 https://ui.shadcn.com/docs/dark-mode/vite
+
+
+AL/ML:
+Course Site: https://www.kaggle.com/learn/intro-to-machine-learning
