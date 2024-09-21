@@ -6,6 +6,8 @@ For FrontEnd: React.js, Tailwind CSS, ShadCN
 
 # Resources
 
+Learm how to use GitHub Desktop: https://youtu.be/UGokwtIn1Hk
+
 HTML CSS JS: https://www.w3schools.com/js/default.asp
 
 React: 
