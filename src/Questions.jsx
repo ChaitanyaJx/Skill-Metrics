@@ -57,7 +57,7 @@ const Questions = () => {
               <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Easy</span>
             </div>
             <CardDescription className="text-gray-500">
-              Programming • Time Complexity
+              Tags: Basic Programming , Time Complexity, Space Complexity
             </CardDescription>
             <CardDescription className="text-sm text-gray-400">
               Contributed by: Chaitanya
