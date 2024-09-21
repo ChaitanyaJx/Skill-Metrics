@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const SkillMetrics = () => {
+const HomePage = () => {
   const roles = [
     { name: "Artificial Intelligence", icon: <Cpu className="h-6 w-6" /> },
     { name: "Computer Science", icon: <Code className="h-6 w-6" /> },
@@ -100,4 +100,4 @@ const SkillMetrics = () => {
   )
 }
 
-export default SkillMetrics;
+export default HomePage;

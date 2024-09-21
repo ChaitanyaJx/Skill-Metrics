@@ -18,7 +18,7 @@ const Questions = () => {
     <div className="min-h-screen bg-gradient-to-r from-purple-100 to-blue-100 flex flex-col">
       <nav className="bg-white p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-80 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
-          <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">CodeMetrics</span>
+          <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">Coding Challenge</span>
           <div className="space-x-4">
             <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Problems</Button>
             <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Resources</Button>
@@ -48,7 +48,7 @@ const Questions = () => {
       </nav>
 
       <main className="flex-grow flex items-center justify-center p-4">
-        <Card className="w-full max-w-4xl bg-white border-gray-200 shadow-lg">
+        <Card className="w-full max-w-4xl bg-white border-gray-200 shadow-lg scale-125">
           <CardHeader className="space-y-1">
             <div className="flex justify-between items-center">
               <CardTitle className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
