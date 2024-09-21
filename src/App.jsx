@@ -19,7 +19,7 @@ export default function App() {
           <p className="text-gray-600 mb-8">Choose an option to get started:</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Button asChild variant="outline" className="h-32 text-lg font-semibold">
-              <a href="/home" className="flex flex-col items-center justify-center">
+              <a href="https://skillmetric.netlify.app/home" className="flex flex-col items-center justify-center">
                 <Home className="w-8 h-8 mb-2" />
                 Home
               </a>
