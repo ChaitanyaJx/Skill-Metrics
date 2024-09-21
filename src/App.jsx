@@ -10,7 +10,7 @@ export default function App() {
       <header className="bg-white p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-80 shadow-md">
         <div className="container mx-auto">
           <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-            CodeMetrics
+            SkillMetrics
           </span>
         </div>
       </header>
