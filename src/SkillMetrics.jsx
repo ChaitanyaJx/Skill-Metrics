@@ -40,11 +40,29 @@ const SkillMetrics = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">About</Button>
-            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Contact</Button>
-            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors p-2" aria-label="User Profile">
-              <User className="h-5 w-5" />
-            </Button>
+            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Resources</Button>
+            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Support</Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">
+                  <User className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>My Contributions</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </nav>
