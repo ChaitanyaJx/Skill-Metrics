@@ -2,21 +2,27 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
-import SkillMetrics from './SkillMetrics'
 import './index.css'
+import Questions from './Questions'
+import HomePage from './HomePage'
+import LoginPage from './LoginPage'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <SkillMetrics />,
-  },
-  {
-    path: "/login",
     element: <App />,
   },
   {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
     path: "/home",
-    element: <SkillMetrics />,
+    element: <HomePage />,
+  },
+  {
+    path: "/questions",
+    element: <Questions />,
   },
 ])
 
