@@ -6,6 +6,8 @@ import './index.css'
 import Questions from './Questions'
 import HomePage from './HomePage'
 import LoginPage from './LoginPage'
+import PricingPage from './pricingPage'
+import SupportPage from './supportPage'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,18 @@ const router = createBrowserRouter([
     path: "/questions",
     element: <Questions />,
   },
+  {
+    path: "*",
+    element: <App />,
+  },
+  {
+    path: "/pricing",
+    element: <PricingPage/>,
+  },
+  {
+    path: "/support",
+    element: <SupportPage/>,
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

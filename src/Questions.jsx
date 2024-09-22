@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ChevronRight, Code, Clock, BookOpen, User, Moon, Sun, Search } from "lucide-react"
+import { ChevronRight, Code, Clock, BookOpen, User, Moon, Sun, Search, Pencil } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
   DropdownMenu,
@@ -82,13 +82,13 @@ export default function Questions() {
                   <BookOpen className="w-4 h-4 mr-2" />
                   Description
                 </TabsTrigger>
-                <TabsTrigger value="code" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700 data-[state=active]:text-purple-300' : 'text-purple-600 data-[state=active]:bg-white'}>
-                  <Code className="w-4 h-4 mr-2" />
-                  Code
-                </TabsTrigger>
                 <TabsTrigger value="submission" className={darkMode ? 'text-indigo-400 data-[state=active]:bg-gray-700 data-[state=active]:text-pink-500' : 'text-indigo-600 data-[state=active]:bg-white'}>
                   <Clock className="w-4 h-4 mr-2" />
-                  Submission
+                  Options
+                </TabsTrigger>
+                <TabsTrigger value="code" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700 data-[state=active]:text-purple-300' : 'text-purple-600 data-[state=active]:bg-white'}>
+                  <Pencil className="w-4 h-4 mr-2" />
+                  Your Solution
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="description" className="space-y-4">
@@ -109,7 +109,7 @@ for (k = 0; k < N; k++) {
                 <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>Implement your solution here:</p>
                 <textarea
                   className={`w-full h-64 p-4 border rounded-md ${darkMode ? 'bg-gray-900 border-gray-700 text-gray-300 focus:ring-pink-500 focus:border-pink-500' : 'bg-white border-gray-300 text-gray-900 focus:ring-pink-500 focus:border-pink-500'}`}
-                  placeholder="// Write your code here"
+                  placeholder="//Write your reasoning here"
                 ></textarea>
               </TabsContent>
               <TabsContent value="submission" className="space-y-4">
