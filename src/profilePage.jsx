@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Moon, Sun, MapPin, Clock, Eye, MessageSquare, HelpCircle, Award, Users, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ProfileIcon } from './functions/icons';
 
 export default function ProfilePage() {
   const [darkMode, setDarkMode] = useState(false);
@@ -27,6 +28,7 @@ export default function ProfilePage() {
             <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
               <Link to="/resources">Resources</Link>
             </Button>
+            <ProfileIcon darkMode={darkMode} />
             <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
               {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
             </Button>
@@ -37,12 +39,12 @@ export default function ProfilePage() {
       <main className="flex-grow container mx-auto mt-8 px-4">
         <div className={`rounded-lg shadow-xl p-6 ${darkMode ? 'bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-md' : 'bg-white bg-opacity-70 backdrop-filter backdrop-blur'}`}>
           <div className="flex flex-col md:flex-row items-center md:items-start mb-6">
-            <img src="/placeholder.svg?height=150&width=150" alt="Profile" className="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6" />
+            <img src="src/assets/profilePicDefault.jpg" alt="Profile" className="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6" />
             <div>
-              <h1 className={`text-4xl font-bold mb-2 ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>Fnguyen</h1>
+              <h1 className={`text-4xl font-bold mb-2 ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>Chaitanya</h1>
               <div className="flex items-center mb-2">
                 <MapPin className="w-4 h-4 mr-2" />
-                <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>Germany</span>
+                <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>India</span>
               </div>
               <div className="flex items-center">
                 <Clock className="w-4 h-4 mr-2" />

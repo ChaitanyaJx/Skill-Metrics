@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ProfileIcon } from './functions/icons';
 
 export default function PricingPage() {
   const [darkMode, setDarkMode] = useState(false);
@@ -38,9 +39,7 @@ export default function PricingPage() {
             <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
               <Link to="/support">Support</Link>
             </Button>
-            <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-              <Link to="/login">Login</Link>
-            </Button>
+            <ProfileIcon darkMode={darkMode} />
             <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
               {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
             </Button>

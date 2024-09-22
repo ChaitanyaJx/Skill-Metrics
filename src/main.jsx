@@ -11,6 +11,8 @@ import SupportPage from './supportPage'
 import ResourcesPage from './resourcesPage'
 import ScoreCard from './scoreCard'
 import ProfilePage from './profilePage'
+import ContributePage from './profilePage/ContributePage'
+
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage/>,
+  },
+  {
+    path: "/profile/contribute",
+    element: <ContributePage/>,
   }
 ])
 
