@@ -27,3 +27,13 @@ https://ui.shadcn.com/docs/dark-mode/vite
 
 
 AL/ML: https://www.kaggle.com/learn/intro-to-machine-learning
+
+Backend:
+
+Backend tech stacks we would be using
+Backend Framework: Node.js with Express.js
+Database: MongoDB (or SQL-based databases)
+Authentication: JWT (JSON Web Tokens)
+ORM/ODM: Mongoose (for MongoDB) or Sequelize (for SQL)
+
+
