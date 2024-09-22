@@ -70,7 +70,7 @@ export default function PricingPage() {
                 "Standard resume builder"
               ]}
               ctaText="Get Started"
-              ctaLink="/signup"
+              ctaLink="/login"
               darkMode={darkMode}
             />
             <PricingCard
@@ -86,7 +86,7 @@ export default function PricingPage() {
                 "Career fair organization tools"
               ]}
               ctaText="Contact Sales"
-              ctaLink="/contact"
+              ctaLink="/support"
               darkMode={darkMode}
             />
             <PricingCard
@@ -103,7 +103,7 @@ export default function PricingPage() {
                 "Talent pool analytics"
               ]}
               ctaText="Get a Quote"
-              ctaLink="/quote"
+              ctaLink="/support"
               darkMode={darkMode}
             />
           </div>

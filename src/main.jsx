@@ -12,7 +12,7 @@ import ResourcesPage from './resourcesPage'
 import ScoreCard from './scoreCard'
 import ProfilePage from './profilePage'
 import ContributePage from './profilePage/ContributePage'
-
+import SettingsPage from './profilePage/settingsPage'
 
 const router = createBrowserRouter([
   {
@@ -32,33 +32,37 @@ const router = createBrowserRouter([
     element: <Questions />,
   },
   {
-    path: "*",
-    element: <App />,
-  },
-  {
     path: "/pricing",
-    element: <PricingPage/>,
+    element: <PricingPage />,
   },
   {
     path: "/support",
-    element: <SupportPage/>,
+    element: <SupportPage />,
   },
   {
     path: "/resources",
-    element: <ResourcesPage/>,
+    element: <ResourcesPage />,
   },
   {
     path: "/score",
-    element: <ScoreCard/>,
+    element: <ScoreCard />,
 
   },
   {
     path: "/profile",
-    element: <ProfilePage/>,
+    element: <ProfilePage />,
   },
   {
-    path: "/profile/contribute",
+    path: "/profile/contribute ",
     element: <ContributePage/>,
+  },
+  {
+    path: "/profile/settings",
+    element: <SettingsPage />,
+  },
+  {
+    path: "*",
+    element: <App />,
   }
 ])
 

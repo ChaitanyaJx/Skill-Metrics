@@ -29,7 +29,9 @@ export const ProfileIcon = ({ darkMode }) => {
           </span>
         </DropdownMenuItem>
         <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
+          <Link to="/profile/settings">
           <span>Settings</span>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
           <Link to="/login">
