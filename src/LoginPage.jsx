@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ChevronRight, Github, Twitter } from "lucide-react"
+import { ChevronRight, Github, Twitter, Moon, Sun } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,80 +12,97 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const LoginPage = () => {
+import { Link } from "react-router-dom"
+
+export default function LoginPage() {
+  const [darkMode, setDarkMode] = useState(false)
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode)
+  }
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col">
-      <nav className="bg-white p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-80 shadow-md">
+    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
+      <nav className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-gray-900 bg-opacity-40' : 'bg-white bg-opacity-40'} shadow-lg`}>
         <div className="container mx-auto flex justify-between items-center">
-          <span className="text-2xl font-bold text-pink-500">SkillMetrics</span>
-          <div className="space-x-4">
-            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Home</Button>
+          <span className={`text-2xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>SkillMetrics</span>
+          <div className="space-x-4 flex items-center">
+            <Link to="/">
+              <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
+                Home
+              </Button>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Pricing</Button>
+                <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>Pricing</Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>
+              <DropdownMenuContent className={darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}>
+                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
                   <span>For Individuals</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
                   <span>For Colleges</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
                   <span>For Businesses</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">About</Button>
-            <Button variant="ghost" className="text-gray-600 hover:text-pink-500 transition-colors">Contact</Button>
+            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>About</Button>
+            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>Contact</Button>
+            <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
+              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
+            </Button>
           </div>
         </div>
       </nav>
 
-      <main className="flex-grow flex items-center justify-center p-4 bg-gradient-to-r from-purple-100 to-blue-100">
-        <Card className="w-full max-w-md bg-white border-gray-200 shadow-lg scale-125">
+      <main className={`flex-grow flex items-center justify-center p-4 ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100'}`}>
+        <Card className={`w-full max-w-md ${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} shadow-xl scale-125`}>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
+            <CardTitle className={`text-2xl font-bold text-center ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>
               Welcome to SkillMetrics
             </CardTitle>
-            <CardDescription className="text-center text-gray-500">
+            <CardDescription className={`text-center ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Login or create an account to access your personalized skill metrics
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login" className="text-pink-500">Login</TabsTrigger>
-                <TabsTrigger value="register" className="text-purple-500">Register</TabsTrigger>
+                <TabsTrigger value="login" className={darkMode ? 'text-red-400 data-[state=active]:bg-gray-700' : 'text-red-600 data-[state=active]:bg-white'}>Login</TabsTrigger>
+                <TabsTrigger value="register" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700' : 'text-purple-600 data-[state=active]:bg-white'}>Register</TabsTrigger>
               </TabsList>
               <TabsContent value="login" className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-600">Email</Label>
-                  <Input id="email" type="email" placeholder="m@example.com" className="bg-gray-50 border-gray-300 text-gray-700 focus:ring-pink-400 focus:border-pink-400" />
+                  <Label htmlFor="email" className={darkMode ? 'text-gray-200' : 'text-gray-700'}>Email</Label>
+                  <Input id="email" type="email" placeholder="m@example.com" className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-pink-400 focus:border-pink-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-pink-500 focus:border-pink-500'}`} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-gray-600">Password</Label>
-                  <Input id="password" type="password" className="bg-gray-50 border-gray-300 text-gray-700 focus:ring-pink-400 focus:border-pink-400" />
+                  <Label htmlFor="password" className={darkMode ? 'text-gray-200' : 'text-gray-700'}>Password</Label>
+                  <Input id="password" type="password" className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-pink-400 focus:border-pink-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-pink-500 focus:border-pink-500'}`} />
                 </div>
-                <Button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold">
-                  Login
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/home" className="block text-right">
+                  <Button className={`w-full ${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-white text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold`}>
+                    Login
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </TabsContent>
               <TabsContent value="register" className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="register-email" className="text-gray-600">Email</Label>
-                  <Input id="register-email" type="email" placeholder="m@example.com" className="bg-gray-50 border-gray-300 text-gray-700 focus:ring-purple-400 focus:border-purple-400" />
+                  <Label htmlFor="register-email" className={darkMode ? 'text-gray-200' : 'text-gray-700'}>Email</Label>
+                  <Input id="register-email" type="email" placeholder="m@example.com" className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-purple-400 focus:border-purple-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-purple-500 focus:border-purple-500'}`} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="register-password" className="text-gray-600">Password</Label>
-                  <Input id="register-password" type="password" className="bg-gray-50 border-gray-300 text-gray-700 focus:ring-purple-400 focus:border-purple-400" />
+                  <Label htmlFor="register-password" className={darkMode ? 'text-gray-200' : 'text-gray-700'}>Password</Label>
+                  <Input id="register-password" type="password" className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-purple-400 focus:border-purple-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-purple-500 focus:border-purple-500'}`} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="confirm-password" className="text-gray-600">Confirm Password</Label>
-                  <Input id="confirm-password" type="password" className="bg-gray-50 border-gray-300 text-gray-700 focus:ring-purple-400 focus:border-purple-400" />
+                  <Label htmlFor="confirm-password" className={darkMode ? 'text-gray-200' : 'text-gray-700'}>Confirm Password</Label>
+                  <Input id="confirm-password" type="password" className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-purple-400 focus:border-purple-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-purple-500 focus:border-purple-500'}`} />
                 </div>
-                <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold">
+                <Button className={`w-full ${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold`}>
                   Create Account
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -95,18 +112,18 @@ const LoginPage = () => {
           <CardFooter className="flex flex-col space-y-4">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-gray-300" />
+                <span className={`w-full border-t ${darkMode ? 'border-gray-600' : 'border-gray-300'}`} />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                <span className={`px-2 ${darkMode ? 'bg-gray-800 text-gray-400' : 'bg-white text-gray-500'}`}>Or continue with</span>
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full bg-white border-gray-300 text-gray-700 hover:bg-gray-100">
+              <Button variant="outline" className={`w-full ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100'}`}>
                 <Github className="mr-2 h-4 w-4" />
                 Github
               </Button>
-              <Button variant="outline" className="w-full bg-white border-gray-300 text-gray-700 hover:bg-gray-100">
+              <Button variant="outline" className={`w-full ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-200 hover:bg-gray-600' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100'}`}>
                 <Twitter className="mr-2 h-4 w-4" />
                 Twitter
               </Button>
@@ -117,5 +134,3 @@ const LoginPage = () => {
     </div>
   )
 }
-
-export default LoginPage;
