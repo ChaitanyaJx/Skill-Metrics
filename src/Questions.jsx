@@ -78,15 +78,15 @@ export default function Questions() {
           <CardContent>
             <Tabs defaultValue="description" className="w-full">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="description" className={darkMode ? 'text-pink-400 data-[state=active]:bg-gray-700' : 'text-pink-600 data-[state=active]:bg-white'}>
+                <TabsTrigger value="description" className={darkMode ? 'text-pink-400 data-[state=active]:bg-gray-700 data-[state=active]:text-cyan-300' : 'text-pink-600 data-[state=active]:bg-white'}>
                   <BookOpen className="w-4 h-4 mr-2" />
                   Description
                 </TabsTrigger>
-                <TabsTrigger value="code" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700' : 'text-purple-600 data-[state=active]:bg-white'}>
+                <TabsTrigger value="code" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700 data-[state=active]:text-purple-300' : 'text-purple-600 data-[state=active]:bg-white'}>
                   <Code className="w-4 h-4 mr-2" />
                   Code
                 </TabsTrigger>
-                <TabsTrigger value="submission" className={darkMode ? 'text-indigo-400 data-[state=active]:bg-gray-700' : 'text-indigo-600 data-[state=active]:bg-white'}>
+                <TabsTrigger value="submission" className={darkMode ? 'text-indigo-400 data-[state=active]:bg-gray-700 data-[state=active]:text-pink-500' : 'text-indigo-600 data-[state=active]:bg-white'}>
                   <Clock className="w-4 h-4 mr-2" />
                   Submission
                 </TabsTrigger>

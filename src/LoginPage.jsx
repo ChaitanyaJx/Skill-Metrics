@@ -70,8 +70,8 @@ export default function LoginPage() {
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login" className={darkMode ? 'text-red-400 data-[state=active]:bg-gray-700' : 'text-red-600 data-[state=active]:bg-white'}>Login</TabsTrigger>
-                <TabsTrigger value="register" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700' : 'text-purple-600 data-[state=active]:bg-white'}>Register</TabsTrigger>
+                <TabsTrigger value="login" className={darkMode ? 'text-red-400 data-[state=active]:bg-gray-700 data-[state=active]:text-white' : 'text-red-600 data-[state=active]:bg-white'}>Login</TabsTrigger>
+                <TabsTrigger value="register" className={darkMode ? 'text-purple-400 data-[state=active]:bg-gray-700 data-[state=active]:text-white' : 'text-purple-600 data-[state=active]:bg-white'}>Register</TabsTrigger>
               </TabsList>
               <TabsContent value="login" className="space-y-4">
                 <div className="space-y-2">
