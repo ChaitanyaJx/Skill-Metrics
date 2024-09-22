@@ -222,7 +222,7 @@ export default function ScoreCard() {
                             <Badge variant="secondary" className="mr-2">
                               {resource.difficulty}
                             </Badge>
-                            <Badge variant="outline">
+                            <Badge variant="secondary" className="mr-2">
                               {resource.category}
                             </Badge>
                             <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
