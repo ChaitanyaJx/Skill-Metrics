@@ -7,7 +7,8 @@ import { ProfileIcon } from './functions/icons';
 
 
 export default function SupportPage() {
-  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [activeTab, setActiveTab] = useState('individual');
 
   return (

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import React, { useState, useContext} from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { DarkModeContext } from '/src/DarkModeContext';
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Code, Database, Globe, Server, Shield, Brain, Search, X, User} from 'lucide-react';
@@ -42,13 +41,13 @@ const resources = {
 
 
 export default function ResourcesPage() {
-
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [activeTab, setActiveTab] = useState('programming');
   const [searchTerm, setSearchTerm] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
  
-  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  
 
   const debouncedSearch = useCallback(
     debounce((term) => {
