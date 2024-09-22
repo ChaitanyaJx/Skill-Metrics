@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { BookOpen, Code, Cpu, Zap, User, Moon, Sun } from "lucide-react"
 import { Link } from "react-router-dom"
 import { ProfileIcon } from './functions/icons'
+
 export default function HomePage() {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const roles = [
@@ -57,9 +58,11 @@ export default function HomePage() {
         </div>
 
         <div className="flex justify-center mb-8">
-          <Button className={`${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold py-3 px-6 rounded-full transition-all transform hover:scale-105`}>
-            <BookOpen className="mr-2 h-5 w-5" /> Check your skill potential with your Github Profile
-          </Button>
+            <Link to="/questions">
+            <Button className={`${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold py-3 px-6 rounded-full transition-all transform hover:scale-105`}>
+            <BookOpen className="mr-2 h-5 w-5" /> Discover Your Interest! Take a test to determine your career option!
+            </Button>
+            </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full px-4 mb-8">
