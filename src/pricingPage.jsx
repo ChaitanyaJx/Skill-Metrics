@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react'
+import { DarkModeContext } from '/src/DarkModeContext';
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, User, GraduationCap, Building, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -13,12 +14,8 @@ import {
 import { ProfileIcon } from './functions/icons';
 
 export default function PricingPage() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  
   return (
     <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
       <header className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-gray-900 bg-opacity-40' : 'bg-white bg-opacity-40'} shadow-lg`}>

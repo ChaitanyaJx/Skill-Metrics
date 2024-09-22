@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import React, { useState, useContext} from 'react'
+import { DarkModeContext } from '/src/DarkModeContext';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -8,11 +10,8 @@ import { Moon, Sun, BookOpen, ArrowRight, Trophy, Target, Info } from 'lucide-re
 import { Link } from 'react-router-dom';
 
 export default function ScoreCard() {
-  const [darkMode, setDarkMode] = useState(false);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   const overallScore = 75;
   const skills = [

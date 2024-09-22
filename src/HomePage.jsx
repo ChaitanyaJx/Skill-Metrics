@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
+import { DarkModeContext } from '/src/DarkModeContext';
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Code, Cpu, Zap, User, Moon, Sun } from "lucide-react"
 import { Link } from "react-router-dom"
 import { ProfileIcon } from './functions/icons'
 export default function HomePage() {
-  const [darkMode, setDarkMode] = useState(false)
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
-
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const roles = [
     { name: "Artificial Intelligence", icon: <Cpu className="h-6 w-6" /> },
     { name: "Computer Science", icon: <Code className="h-6 w-6" /> },

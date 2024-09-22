@@ -1,25 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
+import { DarkModeContext } from './DarkModeContext';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronRight, Github, Twitter, Moon, Sun } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+
 
 import { Link } from "react-router-dom"
 
 export default function LoginPage() {
-  const [darkMode, setDarkMode] = useState(false)
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
 
   return (
     <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>

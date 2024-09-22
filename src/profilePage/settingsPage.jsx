@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
+import { DarkModeContext } from '/src/DarkModeContext';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,13 +12,8 @@ import { ChevronRight, Sun, Moon, User, Bell, Lock, Upload } from "lucide-react"
 import { Link } from "react-router-dom"
 
 export default function SettingsPage() {
-  const [darkMode, setDarkMode] = useState(false)
+  const { darkMode, setDarkMode } = useContext(DarkModeContext)
   const [profileImage, setProfileImage] = useState(null)
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
-
   const handleImageUpload = (event) => {
     const file = event.target.files[0]
     if (file) {
