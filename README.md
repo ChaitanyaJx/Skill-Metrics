@@ -4,8 +4,9 @@ FrontEnd preview: https://skillmetric.netlify.app/
 
 # CHow to run locally?
 1. Install GitHub Desktop and Clone this repo or select from given repo list
-2. Install Node
-3. After cloning, 
+2. Install Node: https://www.youtube.com/watch?v=06X51c6WHsQ
+3. After cloning, type `npm install` in the terminal
+4. `npm run dev` to run locally
 
 
 # Tech Stack 
