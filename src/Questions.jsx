@@ -6,13 +6,8 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronRight, Code, Clock, BookOpen, User, Moon, Sun, Search, Pencil } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Link } from "react-router-dom"
+import { ProfileIcon } from './functions/icons'
 
 export default function Questions() {
   const [darkMode, setDarkMode] = useState(false)
@@ -27,31 +22,12 @@ export default function Questions() {
         <div className="container mx-auto flex justify-between items-center">
           <span className={`text-2xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>Coding Challenge</span>
           <nav className="space-x-4 flex items-center">
-            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>Problems</Button>
-            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>Resources</Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-                  <User className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className={darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}>
-                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
-                  <span>My Contributions</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
-                  <Link to="/login">
-                    <span>Logout</span>
-                  </Link>                  
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
+              <Link to="/resources">
+              Resources
+              </Link>
+            </Button>
+            <ProfileIcon darkMode={darkMode} />
             <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
               {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
             </Button>
@@ -95,14 +71,14 @@ export default function Questions() {
                 <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>What is the time, space complexity of following code:</p>
                 <pre className={`${darkMode ? 'bg-gray-900 text-gray-300' : 'bg-gray-100 text-gray-800'} p-4 rounded-md text-sm overflow-x-auto`}>
                   {`int a = 0, b = 0;
-for (i = 0; i < N; i++) {
-  for (j = 0; j < N; j++) {
-      a = a + j;
-  }
-}
-for (k = 0; k < N; k++) {
-  b = b + k;
-}`}
+                        for (i = 0; i < N; i++) {
+                          for (j = 0; j < N; j++) {
+                              a = a + j;
+                          }
+                        }
+                        for (k = 0; k < N; k++) {
+                          b = b + k;
+                        }`}
                 </pre>
               </TabsContent>
               <TabsContent value="code" className="space-y-4">
