@@ -2,6 +2,13 @@
 
 FrontEnd preview: https://skillmetric.netlify.app/
 
+# Configuration
+
+1. Vite + React
+2. Tailwind
+3. ShadCN
+4. CSS
+
 # Tech Stack 
 So far, we have used...
 
