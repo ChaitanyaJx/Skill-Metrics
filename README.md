@@ -2,6 +2,13 @@
 
 FrontEnd preview: https://skillmetric.netlify.app/
 
+# CHow to run locally?
+1. Install GitHub Desktop and Clone this repo or select from given repo list
+2. Install Node: https://www.youtube.com/watch?v=06X51c6WHsQ
+3. After cloning, type `npm install` in the terminal
+4. `npm run dev` to run locally
+
+
 # Tech Stack 
 So far, we have used...
 
@@ -30,10 +37,12 @@ AL/ML: https://www.kaggle.com/learn/intro-to-machine-learning
 
 Backend:
 
-Backend tech stacks we would be using
-Backend Framework: Node.js with Express.js
+Backend tech stacks we would be using Backend Framework: Node.js with Express.js
+
 Database: MongoDB (or SQL-based databases)
+
 Authentication: JWT (JSON Web Tokens)
+
 ORM/ODM: Mongoose (for MongoDB) or Sequelize (for SQL)
 
 
