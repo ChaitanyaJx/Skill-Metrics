@@ -2,11 +2,10 @@
 
 FrontEnd preview: https://skillmetric.netlify.app/
 
-# Configuration
-
-1. Vite + React
-2. Tailwind CSS
-3. ShadCN Components
+# CHow to run locally?
+1. Install GitHub Desktop and Clone this repo or select from given repo list
+2. Install Node
+3. After cloning, 
 
 
 # Tech Stack 
