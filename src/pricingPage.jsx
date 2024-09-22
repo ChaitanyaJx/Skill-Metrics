@@ -64,9 +64,10 @@ export default function PricingPage() {
               price="Free"
               description="Perfect for individual job seekers"
               features={[
+                "Unlimited access to all features contributed by community",
                 "AI-powered job matching",
                 "Basic skill gap analysis",
-                "Limited job market insights",
+                "Personalized job market insights",
                 "Standard resume builder"
               ]}
               ctaText="Get Started"
@@ -76,7 +77,7 @@ export default function PricingPage() {
             <PricingCard
               icon={<GraduationCap className="w-12 h-12" />}
               title="College/Universities"
-              price="$499"
+              price="Donations and Affiliates"
               description="Ideal for educational institutions"
               features={[
                 "All Personal features",

@@ -139,7 +139,9 @@ for (k = 0; k < N; k++) {
               Success Rate: 67.0% • Attempts: 429
             </div>
             <Button className={`${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold`}>
+              <Link to="/score">
               Submit
+              </Link>
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </CardFooter>

@@ -40,7 +40,11 @@ export default function HomePage() {
                 Pricing
               </Button>
             </Link>
-            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>Resources</Button>
+            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
+            <Link to="/resources">  
+              Resources
+            </Link>
+            </Button>
             <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
               <Link to="/support">Support</Link>
               </Button>
@@ -52,7 +56,9 @@ export default function HomePage() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className={darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}>
                 <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
+                  <Link to="/profile">
                   <span>Profile</span>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className={darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}>
                   <span>My Contributions</span>

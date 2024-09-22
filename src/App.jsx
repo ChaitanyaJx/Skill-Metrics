@@ -31,7 +31,7 @@ export default function App() {
               <Link to="/pricing">Pricing</Link>
             </Button>
             <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-              <Link to="/">Resources</Link>
+              <Link to="/resources">Resources</Link>
             </Button>
             <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
               <Link to="/support">Support</Link>

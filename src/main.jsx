@@ -8,6 +8,9 @@ import HomePage from './HomePage'
 import LoginPage from './LoginPage'
 import PricingPage from './pricingPage'
 import SupportPage from './supportPage'
+import ResourcesPage from './resourcesPage'
+import ScoreCard from './scoreCard'
+import ProfilePage from './profilePage'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,19 @@ const router = createBrowserRouter([
   {
     path: "/support",
     element: <SupportPage/>,
+  },
+  {
+    path: "/resources",
+    element: <ResourcesPage/>,
+  },
+  {
+    path: "/score",
+    element: <ScoreCard/>,
+
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage/>,
   }
 ])
 
