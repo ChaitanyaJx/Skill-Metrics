@@ -12,7 +12,7 @@ import { ChevronRight, Sun, Moon, User, Bell, Lock, Upload } from "lucide-react"
 import { Link } from "react-router-dom"
 
 export default function SettingsPage() {
-  const { darkMode, setDarkMode } = useContext(DarkModeContext)
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const [profileImage, setProfileImage] = useState(null)
   const handleImageUpload = (event) => {
     const file = event.target.files[0]

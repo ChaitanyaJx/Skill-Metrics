@@ -14,6 +14,8 @@ import ProfilePage from './profilePage'
 import ContributePage from './profilePage/ContributePage'
 import SettingsPage from './profilePage/settingsPage'
 import { DarkModeProvider } from './DarkModeContext'
+import SkillPage from './skillPage'
+import CareerTest from './careerTest'
 
 const router = createBrowserRouter([
   {
@@ -54,13 +56,25 @@ const router = createBrowserRouter([
     element: <ProfilePage />,
   },
   {
-    path: "/profile/contribute ",
-    element: <ContributePage/>,
+    path: "/profile/contribute",
+    element: <ContributePage />,
   },
   {
     path: "/profile/settings",
     element: <SettingsPage />,
   },
+  {
+    path: "/skilltest",
+    element: <SkillPage />,
+  },
+  {
+    path: "/careertest",
+    element: <CareerTest />,
+  },
+  // {
+  //   path: "/apiChecker",
+  //   element: <apiChecker />,
+  // },
   {
     path: "*",
     element: <App />,
