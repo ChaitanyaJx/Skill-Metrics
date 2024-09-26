@@ -15,7 +15,6 @@ import SettingsPage from './profilePage/settingsPage'
 import { DarkModeProvider } from './DarkModeContext'
 import SkillPage from './skillPage'
 import CareerTest from './careerTest'
-import ProtectedRoute from './ProtectedRoute'
 
 const router = createBrowserRouter([
   {
@@ -28,47 +27,47 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <ProtectedRoute><HomePage /></ProtectedRoute>,
+    element: <HomePage />,
   },
   {
     path: "/questions",
-    element: <ProtectedRoute><Questions /></ProtectedRoute>,
+    element: <Questions />,
   },
   {
     path: "/pricing",
-    element: <ProtectedRoute><PricingPage /></ProtectedRoute>,
+    element: <PricingPage />,
   },
   {
     path: "/support",
-    element: <ProtectedRoute><SupportPage /></ProtectedRoute>,
+    element: <SupportPage />,
   },
   {
     path: "/resources",
-    element: <ProtectedRoute><ResourcesPage /></ProtectedRoute>,
+    element: <ResourcesPage />,
   },
   {
     path: "/score",
-    element: <ProtectedRoute><ScoreCard /></ProtectedRoute>,
+    element: <ScoreCard />,
   },
   {
     path: "/profile",
-    element: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
+    element: <ProfilePage />,
   },
   {
     path: "/profile/contribute",
-    element: <ProtectedRoute><ContributePage /></ProtectedRoute>,
+    element: <ContributePage />,
   },
   {
     path: "/profile/settings",
-    element: <ProtectedRoute><SettingsPage /></ProtectedRoute>,
+    element: <SettingsPage />,
   },
   {
     path: "/skilltest",
-    element: <ProtectedRoute><SkillPage /></ProtectedRoute>,
+    element: <SkillPage />,
   },
   {
     path: "/careertest",
-    element: <ProtectedRoute><CareerTest /></ProtectedRoute>,
+    element: <CareerTest />,
   },
   {
     path: "*",
