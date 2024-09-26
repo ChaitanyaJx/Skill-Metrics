@@ -53,7 +53,7 @@ export default function App() {
 
       <main className="container mx-auto px-4 py-20">
         <div className="text-center mb-8">
-          <Button variant="outline" className={`${darkMode ? 'bg-transparent border-purple-400 hover:bg-purple-600' : 'text-purple-600 border-purple-600 hover:bg-purple-600'}`}>
+          <Button className={`${darkMode ? 'border-purple-400 bg-purple-800 hover:bg-purple-800' : 'text-purple-600 border-purple-600 bg-purple-100 hover:bg-purple-100'}`}>
             Introducing SkillMetrics <ChevronDown className="ml-2 h-4 w-4" />
           </Button>
         </div>
