@@ -1,13 +1,17 @@
 import axios from 'axios';
 
-const UNSPLASH_ACCESS_KEY  = import.meta.env.VITE_IMAGE_ACCESS_KEY;
-
-console.log('API Key:', UNSPLASH_ACCESS_KEY );
-
+const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_IMAGE_ACCESS_KEY;
 const API_URL = 'https://api.unsplash.com';
+
+let cachedImage = null;
+
 export async function getImages(query, width, height) {
+  if (cachedImage) {
+    return cachedImage;
+  }
+
   if (!UNSPLASH_ACCESS_KEY) {
-    console.error('Unsplash API key is not set or process.env is not available');
+    console.error('Unsplash API key is not set or import.meta.env is not available');
     return null;
   }
 
@@ -22,7 +26,8 @@ export async function getImages(query, width, height) {
       },
     });
 
-    return response.data.urls.regular;
+    cachedImage = response.data.urls.regular;
+    return cachedImage;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('Axios error fetching Unsplash image:', error.message);

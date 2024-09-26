@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import './index.css'
@@ -16,6 +15,7 @@ import SettingsPage from './profilePage/settingsPage'
 import { DarkModeProvider } from './DarkModeContext'
 import SkillPage from './skillPage'
 import CareerTest from './careerTest'
+import ProtectedRoute from './ProtectedRoute'
 
 const router = createBrowserRouter([
   {
@@ -28,64 +28,60 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage />,
+    element: <ProtectedRoute><HomePage /></ProtectedRoute>,
   },
   {
     path: "/questions",
-    element: <Questions />,
+    element: <ProtectedRoute><Questions /></ProtectedRoute>,
   },
   {
     path: "/pricing",
-    element: <PricingPage />,
+    element: <ProtectedRoute><PricingPage /></ProtectedRoute>,
   },
   {
     path: "/support",
-    element: <SupportPage />,
+    element: <ProtectedRoute><SupportPage /></ProtectedRoute>,
   },
   {
     path: "/resources",
-    element: <ResourcesPage />,
+    element: <ProtectedRoute><ResourcesPage /></ProtectedRoute>,
   },
   {
     path: "/score",
-    element: <ScoreCard />,
-
+    element: <ProtectedRoute><ScoreCard /></ProtectedRoute>,
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
+    element: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
   },
   {
     path: "/profile/contribute",
-    element: <ContributePage />,
+    element: <ProtectedRoute><ContributePage /></ProtectedRoute>,
   },
   {
     path: "/profile/settings",
-    element: <SettingsPage />,
+    element: <ProtectedRoute><SettingsPage /></ProtectedRoute>,
   },
   {
     path: "/skilltest",
-    element: <SkillPage />,
+    element: <ProtectedRoute><SkillPage /></ProtectedRoute>,
   },
   {
     path: "/careertest",
-    element: <CareerTest />,
+    element: <ProtectedRoute><CareerTest /></ProtectedRoute>,
   },
-  // {
-  //   path: "/apiChecker",
-  //   element: <apiChecker />,
-  // },
   {
     path: "*",
     element: <App />,
   }
 ])
-const Paths = () => {
-    return (
-      <DarkModeProvider>
-        <RouterProvider router={router} />
-      </DarkModeProvider>
-    );
-  }
 
-  export default Paths;
+const Paths = () => {
+  return (
+    <DarkModeProvider>
+      <RouterProvider router={router} />
+    </DarkModeProvider>
+  );
+}
+
+export default Paths;
