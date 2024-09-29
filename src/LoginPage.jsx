@@ -55,28 +55,30 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-[#0c0a1d] text-white' : 'bg-white text-gray-900'} font-sans transition-all duration-300`}>
-      <nav className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-[#0c0a1d] bg-opacity-90' : 'bg-white bg-opacity-90'} shadow-lg`}>
+    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-[#0c0a1d] text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
+      <header className={`p-4 sticky top-0 z-10 ${darkMode ? 'bg-[#0c0a1d]' : 'bg-white'} bg-opacity-90 backdrop-filter backdrop-blur-lg`}>
         <div className="container mx-auto flex justify-between items-center">
-          <span className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>SkillMetrics</span>
-          <div className="space-x-4 flex items-center">
-            <Link to="/">
-              <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-purple-400' : 'text-gray-700 hover:text-purple-600'} transition-colors`}>
-                Home
-              </Button>
-            </Link>
-            <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-purple-400' : 'text-gray-700 hover:text-purple-600'} transition-colors`}>
-              <Link to="/pricing">Pricing</Link>
-            </Button>
-            <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-purple-400' : 'text-gray-700 hover:text-purple-600'} transition-colors`}>
-              <Link to="/support">Support</Link>
-            </Button>
-            <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
-              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-purple-600" />}
+          <span className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+            SkillMetrics
+          </span>
+          <nav className="hidden md:flex space-x-6">
+            <NavButton to="/home" label="Home"/>
+            <NavButton to="/pricing" label="Pricing" />
+            <NavButton to="/support" label="Support" />
+            <NavButton to="/login" label="Login" active/>
+          </nav>
+          <div className="flex space-x-2 items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleDarkMode}
+              className={`rounded-full ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+            >
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           </div>
         </div>
-      </nav>
+      </header>
 
       <main className={`flex-grow flex items-center justify-center p-4 ${darkMode ? 'bg-[#0c0a1d]' : 'bg-white'}`}>
         <Card className={`w-full max-w-md ${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} shadow-xl scale-125`}>
@@ -210,5 +212,15 @@ export default function LoginPage() {
         </Card>
       </main>
     </div>
+  )
+}
+
+function NavButton({ to, label, active = false }) {
+  const { darkMode } = useContext(DarkModeContext)
+
+  return (
+    <Button asChild variant="ghost" className={`text-sm font-medium transition-colors ${darkMode ? 'hover:text-purple-400' : 'hover:text-purple-600'} ${active ? (darkMode ? 'text-purple-400 border-b-2 border-purple-400' : 'text-purple-600 border-b-2 border-purple-600') : (darkMode ? 'text-gray-300' : 'text-gray-600')}`}>
+      <Link to={to}>{label}</Link>
+    </Button>
   )
 }
