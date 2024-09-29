@@ -2,6 +2,8 @@
 
 FrontEnd preview: https://skillmetric.netlify.app/
 
+BackEnd server: "https://skill-metrics.onrender.com"
+
 # CHow to run locally?
 1. Install GitHub Desktop and Clone this repo or select from given repo list
 2. Install Node: https://www.youtube.com/watch?v=06X51c6WHsQ
