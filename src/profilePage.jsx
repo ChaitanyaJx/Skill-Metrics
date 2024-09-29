@@ -1,43 +1,56 @@
-import React, { useState, useContext} from 'react'
-import { DarkModeContext } from '/src/DarkModeContext';
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import { Moon, Sun, MapPin, Clock, Eye, MessageSquare, HelpCircle, Award, Users, Tag, Star, Book, Briefcase } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ProfileIcon } from './functions/icons';
+'use client'
+
+import React, { useContext } from 'react'
+import { DarkModeContext } from '/src/DarkModeContext'
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
+import { Moon, Sun, MapPin, Clock, Eye, MessageSquare, HelpCircle, Award, Users, Tag, Star, Book, Briefcase, ChevronDown } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
 export default function ProfilePage() {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
-      <header className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-gray-900 bg-opacity-40' : 'bg-white bg-opacity-40'} shadow-lg`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-[#0c0a1d] text-white' : 'bg-white text-gray-900'} font-sans`}>
+      <header className={`p-4 sticky top-0 z-10 ${darkMode ? 'bg-[#0c0a1d]' : 'bg-white'} bg-opacity-90 backdrop-filter backdrop-blur-lg`}>
         <div className="container mx-auto flex justify-between items-center">
-          <span className={`text-2xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>
+          <span className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
             SkillMetrics
           </span>
-          <nav className="space-x-4 flex items-center">
-            <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-              <Link to="/home">Home</Link>
-            </Button>
-            <Button asChild variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-              <Link to="/resources">Resources</Link>
-            </Button>
-            <ProfileIcon darkMode={darkMode} />
-            <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
-              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
-            </Button>
+          <nav className="hidden md:flex space-x-6">
+            <NavButton to="/home" label="Home" />
+            <NavButton to="/pricing" label="Pricing" />
+            <NavButton to="/resources" label="Resources" />
+            <NavButton to="/support" label="Support" />
+            <NavButton to="/profile" label="Profile" active />
           </nav>
+          <div className="flex space-x-2 items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleDarkMode}
+              className={`rounded-full ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+            >
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
       </header>
 
-      <main className="flex-grow container mx-auto mt-8 px-4">
-        <div className={`rounded-lg shadow-xl p-6 ${darkMode ? 'bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-md' : 'bg-white bg-opacity-70 backdrop-filter backdrop-blur'}`}>
+      <main className="container mx-auto px-4 py-10">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-center">
+          Welcome, Chaitanya
+        </h1>
+        <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-12 max-w-2xl mx-auto text-center`}>
+          Track your progress and contributions
+        </p>
+        <div className={`rounded-lg shadow-xl p-6 ${darkMode ? 'bg-gray-800 bg-opacity-50' : 'bg-gray-100'}`}>
           <div className="flex flex-col md:flex-row items-center md:items-start mb-6">
-            <img src="src/assets/profilePicDefault.jpg" alt="Profile" className="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6" />
+            <img src="/src/assets/profilePicDefault.jpg?height=128&width=128" alt="Profile" className="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6" />
             <div>
-              <h1 className={`text-4xl font-bold mb-2 ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>Chaitanya</h1>
+              <h2 className={`text-4xl font-bold mb-2 ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>Chaitanya</h2>
               <div className="flex items-center mb-2">
                 <MapPin className="w-4 h-4 mr-2" />
                 <span className={darkMode ? 'text-gray-300' : 'text-gray-600'}>India</span>
@@ -61,7 +74,7 @@ export default function ProfilePage() {
             <TabsContent value="profile">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h2 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Stats</h2>
+                  <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Stats</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <StatCard icon={<Award />} value="1,743" label="points" darkMode={darkMode} />
                     <StatCard icon={<Eye />} value="169k" label="reached" darkMode={darkMode} />
@@ -70,7 +83,7 @@ export default function ProfilePage() {
                   </div>
                 </div>
                 <div>
-                  <h2 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Roles of Interest</h2>
+                  <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Roles of Interest</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <RoleCard role="Data Scientist" darkMode={darkMode} />
                     <RoleCard role="Machine Learning Engineer" darkMode={darkMode} />
@@ -80,7 +93,7 @@ export default function ProfilePage() {
               </div>
 
               <div className="mt-8">
-                <h2 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Recent Test Scores</h2>
+                <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Recent Test Scores</h3>
                 <div className="space-y-4">
                   <TagScoreCard name="machine-learning" score={85} lastTested="2 days ago" darkMode={darkMode} />
                   <TagScoreCard name="python" score={92} lastTested="1 week ago" darkMode={darkMode} />
@@ -117,38 +130,50 @@ export default function ProfilePage() {
           </Tabs>
         </div>
       </main>
+      
+      <Footer />
     </div>
-  );
+  )
+}
+
+function NavButton({ to, label, active = false }) {
+  const { darkMode } = useContext(DarkModeContext)
+
+  return (
+    <Button asChild variant="ghost" className={`text-sm font-medium transition-colors ${darkMode ? 'hover:text-purple-400' : 'hover:text-purple-600'} ${active ? (darkMode ? 'text-purple-400 border-b-2 border-purple-400' : 'text-purple-600 border-b-2 border-purple-600') : (darkMode ? 'text-gray-300' : 'text-gray-600')}`}>
+      <Link to={to}>{label}</Link>
+    </Button>
+  )
 }
 
 function StatCard({ icon, value, label, darkMode }) {
   return (
-    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
       <div className="flex items-center mb-2">
-        {React.cloneElement(icon, { className: `w-5 h-5 mr-2 ${darkMode ? 'text-pink-400' : 'text-pink-600'}` })}
+        {React.cloneElement(icon, { className: `w-5 h-5 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-600'}` })}
         <span className={`text-xl font-bold ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>{value}</span>
       </div>
       <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{label}</span>
     </div>
-  );
+  )
 }
 
 function RoleCard({ role, darkMode }) {
   return (
-    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
       <div className="flex items-center">
-        <Briefcase className={`w-5 h-5 mr-2 ${darkMode ? 'text-pink-400' : 'text-pink-600'}`} />
+        <Briefcase className={`w-5 h-5 mr-2 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`} />
         <span className={`text-sm font-medium ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>{role}</span>
       </div>
     </div>
-  );
+  )
 }
 
 function TagScoreCard({ name, score, lastTested, darkMode }) {
   return (
-    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
       <div className="flex items-center justify-between mb-2">
-        <Badge className={`${darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-100 text-blue-800 hover:bg-blue-200'}`}>
+        <Badge className={`${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-100 text-purple-800 hover:bg-purple-200'}`}>
           <Tag className="w-3 h-3 mr-1" />
           {name}
         </Badge>
@@ -159,7 +184,7 @@ function TagScoreCard({ name, score, lastTested, darkMode }) {
       </div>
       <Progress value={score} className="mt-2" />
     </div>
-  );
+  )
 }
 
 function ContributionCard({ type, title, date, points, darkMode }) {
@@ -167,19 +192,48 @@ function ContributionCard({ type, title, date, points, darkMode }) {
     'Question': <HelpCircle className={`w-5 h-5 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />,
     'Answer': <MessageSquare className={`w-5 h-5 ${darkMode ? 'text-green-400' : 'text-green-600'}`} />,
     'Resource': <Book className={`w-5 h-5 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`} />,
-  };
+  }
 
   return (
-    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+    <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center">
           {iconMap[type]}
           <span className={`ml-2 font-medium ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>{type}</span>
         </div>
-        <Badge className={darkMode ? 'bg-pink-600' : 'bg-pink-100 text-pink-800'}>+{points} points</Badge>
+        <Badge className={darkMode ? 'bg-purple-600' : 'bg-purple-100 text-purple-800'}>+{points} points</Badge>
       </div>
-      <h3 className={`text-lg font-semibold mb-1 ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>{title}</h3>
+      <h4 className={`text-lg font-semibold mb-1 ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>{title}</h4>
       <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{date}</span>
     </div>
-  );
+  )
+}
+
+function Footer() {
+  const { darkMode } = useContext(DarkModeContext)
+
+  return (
+    <footer className={darkMode ? 'bg-gray-900' : 'bg-gray-100'}>
+      <div className="container mx-auto px-4 py-8 flex flex-wrap justify-between items-center">
+        <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          © 2024 SkillMetrics. All rights reserved.
+        </div>
+        <div className="flex space-x-4 mt-4 md:mt-0">
+          <FooterLink href="#" label="Privacy Policy" />
+          <FooterLink href="#" label="Terms of Service" />
+          <FooterLink href="#" label="Contact Us" />
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+function FooterLink({ href, label }) {
+  const { darkMode } = useContext(DarkModeContext)
+
+  return (
+    <a href={href} className={`text-sm ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-600 hover:text-gray-800'} transition-colors`}>
+      {label}
+    </a>
+  )
 }

@@ -18,14 +18,12 @@ export default function HomePage() {
   const careers = [
     { name: "Electronics and Communication Engineering", icon: <Cpu className="h-6 w-6" />, description: "Design and develop cutting-edge communication systems and electronics" },
     { name: "Mechanical Engineering", icon: <Cog className="h-6 w-6" />, description: "Innovate in design, analysis, and manufacturing of mechanical systems" },
-    // { name: "Chemical Engineering", icon: <Flask className="h-6 w-6" />, description: "Develop chemical processes and innovations in materials and energy" },
     { name: "Computer Science Engineering", icon: <Code className="h-6 w-6" />, description: "Build the next generation of software and computational systems" },
     { name: "Artificial Intelligence and Data Science", icon: <TrendingUp className="h-6 w-6" />, description: "Drive breakthroughs in AI and harness data to generate insights" },
     { name: "Civil Engineering", icon: <Building className="h-6 w-6" />, description: "Design and oversee infrastructure projects, ensuring safety and sustainability" },
     { name: "Electrical Engineering", icon: <Bolt className="h-6 w-6" />, description: "Power the world with innovative electrical systems and solutions" },
     { name: "Biomedical Engineering", icon: <Heart className="h-6 w-6" />, description: "Integrate technology with healthcare to enhance medical devices and solutions" },
   ];
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +49,7 @@ export default function HomePage() {
     <Link to={to}>
       <Button 
         variant="ghost" 
-        className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}
+        className={`${darkMode ? 'text-gray-300 hover:text-purple-400' : 'text-gray-700 hover:text-purple-600'} transition-colors`}
       >
         {children}
       </Button>
@@ -81,15 +79,15 @@ export default function HomePage() {
   }
 
   return (
-    <div className={`min-h-screen w-full flex flex-col ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
+    <div className={`min-h-screen w-full flex flex-col ${darkMode ? 'bg-[#0c0a1d] text-white' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100 }}
-        className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-gray-900 bg-opacity-40' : 'bg-white bg-opacity-40'} shadow-lg w-full`}
+        className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-[#0c0a1d] bg-opacity-90' : 'bg-white bg-opacity-40'} shadow-lg w-full`}
       >
         <div className="container mx-auto flex justify-between items-center">
-          <span className={`text-xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>SkillMetrics</span>
+          <span className={`text-xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>SkillMetrics</span>
           <div className="hidden md:flex items-center space-x-4">
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/pricing">Pricing</NavLink>
@@ -100,7 +98,7 @@ export default function HomePage() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
-                    {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
+                    {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-purple-600" />}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -132,7 +130,7 @@ export default function HomePage() {
             <NavLink to="/resources">Resources</NavLink>
             <ProfileIcon darkMode={darkMode} />
             <Button variant="ghost" onClick={toggleDarkMode} className="mt-2">
-              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
+              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-purple-600" />}
             </Button>
           </motion.div>
         )}
@@ -148,7 +146,7 @@ export default function HomePage() {
         >
           <motion.h1 
             variants={itemVariants}
-            className={`text-5xl font-extrabold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300' : 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500'}`}
+            className={`text-5xl font-extrabold mb-4 ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-purple-400 to-purple-500' : 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500'}`}
           >
             Discover Your Career Potential
           </motion.h1>
@@ -163,7 +161,7 @@ export default function HomePage() {
             className="mt-8"
           >
             <Link to="/careertest">
-              <Button className={`${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold py-3 px-6 rounded-full transition-all transform hover:scale-105`}>
+              <Button className={`${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700'} text-white font-semibold py-3 px-6 rounded-full transition-all transform hover:scale-105`}>
                 <GraduationCap className="mr-2 h-5 w-5" /> Start Your Career Assessment
               </Button>
             </Link>
@@ -195,7 +193,7 @@ export default function HomePage() {
                 <Link to="/questions">
                   <Card className={`${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl w-full overflow-hidden`}>
                     <CardContent className="p-6">
-                      <div className={`mb-4 p-4 ${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600' : 'bg-gradient-to-r from-pink-500 to-purple-600'} rounded-full inline-block`}>
+                      <div className={`mb-4 p-4 ${darkMode ? 'bg-purple-600' : 'bg-gradient-to-r from-pink-500 to-purple-600'} rounded-full inline-block`}>
                         {React.cloneElement(career.icon, { className: "h-8 w-8 text-white" })}
                       </div>
                       <h3 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-gray-100' : 'text-purple-600'}`}>{career.name}</h3>
@@ -236,7 +234,7 @@ export default function HomePage() {
               >
                 <Card className={`${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl w-full h-full`}>
                   <CardContent className="p-6 flex flex-col items-center h-full">
-                    <div className={`mb-4 p-4 ${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600' : 'bg-gradient-to-r from-pink-500 to-purple-600'} rounded-full`}>
+                    <div className={`mb-4 p-4 ${darkMode ? 'bg-purple-600' : 'bg-gradient-to-r from-pink-500 to-purple-600'} rounded-full`}>
                       {React.cloneElement(feature.icon, { className: "h-8 w-8 text-white" })}
                     </div>
                     <h3 className={`text-lg font-semibold text-center mb-2 ${darkMode ? 'text-gray-100' : 'text-purple-600'}`}>{feature.title}</h3>
@@ -256,7 +254,7 @@ export default function HomePage() {
         >
           <motion.div variants={itemVariants}>
             <Link to="/skilltest">
-              <Button className={`${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white'} font-semibold py-3 px-6 rounded-full transition-all transform hover:scale-105`}>
+              <Button className={`${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700'} text-white font-semibold py-3 px-6 rounded-full transition-all transform hover:scale-105`}>
                 Take the Skill-based Test Now <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
