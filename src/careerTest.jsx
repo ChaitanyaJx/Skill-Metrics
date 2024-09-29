@@ -1,188 +1,214 @@
-'use client'
+"use client"
 
 import React, { useState, useContext } from 'react'
 import { DarkModeContext } from './DarkModeContext'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { Label } from "@/components/ui/label"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Moon, Sun, Home, Briefcase, ClipboardList, Book } from "lucide-react"
+import { ChevronRight, RefreshCw, Home, DollarSign, HelpCircle, Moon, Sun } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
-const QUESTIONS = [
-  "Do you enjoy working with circuits and electronics to create communication systems or embedded devices?",
-  "Are you more interested in designing mechanical systems and analyzing physical forces in machinery?",
-  "Do you find yourself intrigued by chemical processes, materials science, and energy production?",
-  "Are you passionate about writing code and developing algorithms to solve complex computational problems?",
-  "Does the idea of using data and machine learning to create AI-driven solutions excite you?",
-  "Do you prefer designing and managing infrastructure projects like buildings, roads, and bridges?",
-  "Do you enjoy working with electrical systems, power grids, and renewable energy sources?",
-  "Are you interested in blending healthcare with engineering to design medical devices or improve patient care?"
+const questions = [
+  {
+    question: "Which activity do you enjoy the most?",
+    options: [
+      { value: "tech", label: "Working with computers and technology" },
+      { value: "creative", label: "Creating art or designs" },
+      { value: "people", label: "Helping and interacting with people" },
+      { value: "analytical", label: "Analyzing data and solving complex problems" },
+    ],
+  },
+  {
+    question: "What kind of work environment do you prefer?",
+    options: [
+      { value: "office", label: "A structured office environment" },
+      { value: "remote", label: "Working remotely from anywhere" },
+      { value: "outdoors", label: "Working outdoors or in nature" },
+      { value: "varied", label: "A varied environment with new challenges" },
+    ],
+  },
+  {
+    question: "Which skill do you think is your strongest?",
+    options: [
+      { value: "communication", label: "Communication and interpersonal skills" },
+      { value: "technical", label: "Technical and problem-solving skills" },
+      { value: "creativity", label: "Creativity and innovation" },
+      { value: "leadership", label: "Leadership and decision-making" },
+    ],
+  },
+  {
+    question: "What's your preferred way of learning?",
+    options: [
+      { value: "hands-on", label: "Hands-on experience and practice" },
+      { value: "reading", label: "Reading and researching" },
+      { value: "visual", label: "Visual aids and demonstrations" },
+      { value: "discussion", label: "Group discussions and collaboration" },
+    ],
+  },
+  {
+    question: "What motivates you the most in a job?",
+    options: [
+      { value: "impact", label: "Making a positive impact on society" },
+      { value: "growth", label: "Personal growth and learning opportunities" },
+      { value: "stability", label: "Job security and stability" },
+      { value: "challenge", label: "Challenging work and problem-solving" },
+    ],
+  },
 ]
 
-const CAREERS = [
-  "Electrical Engineering",
-  "Mechanical Engineering",
-  "Chemical Engineering",
-  "Software Engineering",
-  "Data Science / AI Engineering",
-  "Civil Engineering",
-  "Power Systems Engineering",
-  "Biomedical Engineering"
-]
+const careerRecommendations = {
+  tech: "Software Developer",
+  creative: "Graphic Designer",
+  people: "Human Resources Manager",
+  analytical: "Data Scientist",
+  office: "Accountant",
+  remote: "Digital Marketer",
+  outdoors: "Environmental Scientist",
+  varied: "Management Consultant",
+  communication: "Public Relations Specialist",
+  technical: "Systems Analyst",
+  creativity: "UX/UI Designer",
+  leadership: "Project Manager",
+  "hands-on": "Mechanical Engineer",
+  reading: "Research Analyst",
+  visual: "Multimedia Artist",
+  discussion: "Teacher",
+  impact: "Non-profit Program Manager",
+  growth: "Entrepreneur",
+  stability: "Government Administrator",
+  challenge: "Cybersecurity Specialist",
+}
 
 export default function CareerTest() {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState(new Array(QUESTIONS.length).fill(0))
-  const [showResult, setShowResult] = useState(false)
+  const [answers, setAnswers] = useState([])
+  const [result, setResult] = useState(null)
+  const navigate = useNavigate()
 
   const handleAnswer = (value) => {
-    setAnswers(prev => {
-      const newAnswers = [...prev]
-      newAnswers[currentQuestion] = value
-      return newAnswers
-    })
-    if (currentQuestion < QUESTIONS.length - 1) {
-      setCurrentQuestion(prev => prev + 1)
+    const newAnswers = [...answers, value]
+    setAnswers(newAnswers)
+
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1)
     } else {
-      setShowResult(true)
+      // Calculate result
+      const mostFrequent = newAnswers.sort((a, b) =>
+        newAnswers.filter(v => v === a).length - newAnswers.filter(v => v === b).length
+      ).pop()
+      setResult(careerRecommendations[mostFrequent ])
     }
   }
 
-  const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(prev => prev - 1)
-    }
+  const resetTest = () => {
+    setCurrentQuestion(0)
+    setAnswers([])
+    setResult(null)
   }
 
-  const getTopCareers = () => {
-    const careerScores = answers.map((score, index) => ({ career: CAREERS[index], score }))
-    return careerScores.sort((a, b) => b.score - a.score).slice(0, 3)
-  }
-
-  const progressPercentage = ((currentQuestion + 1) / QUESTIONS.length) * 100
+  const progress = ((currentQuestion + 1) / questions.length) * 100
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
-      <nav className={`p-4 sticky top-0 z-10 backdrop-filter backdrop-blur-lg ${darkMode ? 'bg-gray-900 bg-opacity-40' : 'bg-white bg-opacity-40'} shadow-lg`}>
+    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-[#0c0a1d] text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
+      <header className={`p-4 sticky top-0 z-10 ${darkMode ? 'bg-[#0c0a1d]' : 'bg-white'} bg-opacity-90 backdrop-filter backdrop-blur-lg`}>
         <div className="container mx-auto flex justify-between items-center">
-          <span className={`text-2xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>SkillMetrics</span>
-          <div className="space-x-4 flex items-center">
-            <Link to="/">
-              <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-                <Home className="mr-2 h-4 w-4" />
-                Home
-              </Button>
-            </Link>
-            <Link to="/pricing">
-              <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-                <Briefcase className="mr-2 h-4 w-4" />
-                Pricing
-              </Button>
-            </Link>
-            <Link to="/support">
-              <Button variant="ghost" className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-700 hover:text-pink-600'} transition-colors`}>
-                <Book className="mr-2 h-4 w-4" />
-                Support
-              </Button>
-            </Link>
-            <Button variant="ghost" onClick={toggleDarkMode} className="ml-4">
-              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-indigo-600" />}
+          <span className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
+            SkillMetrics
+          </span>
+          <nav className="hidden md:flex space-x-6">
+            <NavButton to="/home" label="Home" icon={<Home className="w-4 h-4" />} />
+            <NavButton to="/pricing" label="Pricing" icon={<DollarSign className="w-4 h-4" />} />
+            <NavButton to="/support" label="Support" icon={<HelpCircle className="w-4 h-4" />} />
+            <NavButton to="/career-test" label="Career Test" active icon={<ChevronRight className="w-4 h-4" />} />
+          </nav>
+          <div className="flex space-x-2 items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleDarkMode}
+              className={`rounded-full ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
+            >
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           </div>
         </div>
-      </nav>
+      </header>
 
-      <main className="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
-        {/* Decorative shapes */}
-        <div className="absolute top-10 left-10 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-10 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-
-        <Card className={`w-full max-w-2xl ${darkMode ? 'bg-gray-800 bg-opacity-90' : 'bg-white bg-opacity-90'} shadow-xl backdrop-blur-sm`}>
+      <main className="flex-grow flex items-center justify-center p-4">
+        <Card className={`w-full max-w-4xl ${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} shadow-2xl transition-all duration-300 hover:shadow-purple-300/30`}>
+          <CardHeader>
+            <CardTitle className={`text-3xl font-bold text-center ${darkMode ? 'text-purple-400' : 'text-purple-800'}`}>Career Test</CardTitle>
+            <CardDescription className={`text-center text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Discover your ideal career path
+            </CardDescription>
+          </CardHeader>
           <CardContent className="p-6">
-            <h1 className={`text-3xl font-bold mb-6 text-center ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>Career Assessment</h1>
-            
-            <AnimatePresence mode="wait">
-              {!showResult ? (
-                <motion.div
-                  key="question"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Progress value={progressPercentage} className="mb-6 h-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500" />
-                  <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-                    {QUESTIONS[currentQuestion]}
-                  </h2>
-                  <div className="flex flex-col space-y-4">
-                    {[7, 6, 5, 4, 3, 2, 1].map((value) => (
-                      <Button
-                        key={value}
-                        onClick={() => handleAnswer(value)}
-                        variant={darkMode ? "outline" : "default"}
-                        className={`w-full transition-all duration-200 transform hover:scale-105 ${
-                          darkMode 
-                            ? `hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 hover:text-white ${value === 7 ? 'bg-gradient-to-r from-pink-500 to-purple-500' : value === 1 ? 'bg-gradient-to-r from-indigo-500 to-purple-500' : ''}`
-                            : `hover:bg-gradient-to-r hover:from-pink-400 hover:to-purple-400 hover:text-white ${value === 7 ? 'bg-gradient-to-r from-pink-200 to-purple-200' : value === 1 ? 'bg-gradient-to-r from-indigo-200 to-purple-200' : ''}`
-                        }`}
-                      >
-                        {value === 7 ? 'Strongly Agree' : 
-                         value === 4 ? 'Neutral' : 
-                         value === 1 ? 'Strongly Disagree' : 
-                         value.toString()}
-                      </Button>
-                    ))}
-                  </div>
-                  <div className="flex justify-between mt-6">
+            {result ? (
+              <div className="text-center space-y-6">
+                <h3 className={`text-2xl font-semibold ${darkMode ? 'text-purple-400' : 'text-purple-700'}`}>Your Recommended Career:</h3>
+                <p className={`text-4xl font-bold ${darkMode ? 'text-purple-300' : 'text-purple-900'}`}>{result}</p>
+                <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Based on your answers, this career path might be a great fit for you. 
+                  Remember, this is just a suggestion – explore more about this career and others that interest you!
+                </p>
+              </div>
+            ) : (
+              <>
+                <Progress value={progress} className={`mb-6 h-2 ${darkMode ? 'bg-gray-700' : 'bg-purple-200'}`} />
+                <h3 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-purple-400' : 'text-purple-800'}`}>
+                  {questions[currentQuestion].question}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {questions[currentQuestion].options.map((option) => (
                     <Button
-                      onClick={handlePrevious}
-                      disabled={currentQuestion === 0}
-                      variant="ghost"
-                      className={`${darkMode ? 'text-gray-300 hover:text-pink-400' : 'text-gray-600 hover:text-purple-600'}`}
+                      key={option.value}
+                      onClick={() => handleAnswer(option.value)}
+                      className={`h-auto py-6 px-4 text-left transition-all duration-300 ${
+                        darkMode
+                          ? 'bg-gray-700 hover:bg-purple-700 text-gray-200'
+                          : 'bg-purple-100 hover:bg-purple-200 text-gray-800'
+                      } rounded-lg shadow-md hover:shadow-lg`}
                     >
-                      <ChevronLeft className="mr-2 h-4 w-4" /> Previous
+                      <span className="text-lg font-medium">{option.label}</span>
                     </Button>
-                    <Label className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                      Question {currentQuestion + 1} of {QUESTIONS.length}
-                    </Label>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="result"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h2 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-pink-400' : 'text-purple-600'}`}>Your Top Career Matches</h2>
-                  <div className="space-y-4">
-                    {getTopCareers().map((career, index) => (
-                      <div key={index} className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-purple-100'} transition-all duration-200 transform hover:scale-105`}>
-                        <h3 className={`text-lg font-semibold ${darkMode ? 'text-pink-300' : 'text-purple-700'}`}>{career.career}</h3>
-                        <Progress value={(career.score / 7) * 100} className="mt-2 h-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500" />
-                      </div>
-                    ))}
-                  </div>
-                  <Button
-                    onClick={() => {
-                      setCurrentQuestion(0)
-                      setAnswers(new Array(QUESTIONS.length).fill(0))
-                      setShowResult(false)
-                    }}
-                    className={`w-full mt-6 ${darkMode ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700' : 'bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600'} text-white transition-all duration-200 transform hover:scale-105`}
-                  >
-                    Retake Assessment
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  ))}
+                </div>
+              </>
+            )}
           </CardContent>
+          <CardFooter className="flex justify-center p-6">
+            {result ? (
+              <Button onClick={resetTest} className={`${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white text-lg px-8 py-3`}>
+                <RefreshCw className="mr-2 h-5 w-5" />
+                Retake Test
+              </Button>
+            ) : (
+              <Button 
+                onClick={() => handleAnswer(questions[currentQuestion].options[0].value)} 
+                className={`${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white text-lg px-8 py-3`}
+              >
+                {currentQuestion < questions.length - 1 ? 'Next Question' : 'See Result'}
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </Button>
+            )}
+          </CardFooter>
         </Card>
       </main>
     </div>
+  )
+}
+
+function NavButton({ to, label, icon, active = false }) {
+  const { darkMode } = useContext(DarkModeContext)
+
+  return (
+    <Button asChild variant="ghost" className={`text-sm font-medium transition-colors ${darkMode ? 'hover:text-purple-400' : 'hover:text-purple-600'} ${active ? (darkMode ? 'text-purple-400 border-b-2 border-purple-400' : 'text-purple-600 border-b-2 border-purple-600') : (darkMode ? 'text-gray-300' : 'text-gray-600')}`}>
+      <Link to={to} className="flex items-center gap-2">
+        {icon}
+        {label}
+      </Link>
+    </Button>
   )
 }

@@ -55,7 +55,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col ${darkMode ? 'bg-[#0c0a1d] text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
+    <div className={`min-h-screen h-full flex flex-col ${darkMode ? 'bg-[#0c0a1d] text-gray-100' : 'bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 text-gray-900'} font-sans transition-all duration-300`}>
       <header className={`p-4 sticky top-0 z-10 ${darkMode ? 'bg-[#0c0a1d]' : 'bg-white'} bg-opacity-90 backdrop-filter backdrop-blur-lg`}>
         <div className="container mx-auto flex justify-between items-center">
           <span className={`text-2xl font-bold ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
@@ -81,7 +81,7 @@ export default function LoginPage() {
       </header>
 
       <main className={`flex-grow flex items-center justify-center p-4 ${darkMode ? 'bg-[#0c0a1d]' : 'bg-white'}`}>
-        <Card className={`w-full max-w-md ${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} shadow-xl scale-125`}>
+        <Card className={`w-full max-w-md ${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} shadow-xl scale-110`}>
           <CardHeader className="space-y-1">
             <CardTitle className={`text-2xl font-bold text-center ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>
               Welcome to SkillMetrics
