@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL =  process.env.BACK_URL ||'http://localhost:3000'; // Replace with your backend URL
+const API_URL =  "https://skill-metrics.onrender.com/" // Replace with your backend URL
 
 const api = axios.create({
   baseURL: API_URL,
