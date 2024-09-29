@@ -1,50 +1,56 @@
 import React, { useState, useContext } from 'react'
-import { DarkModeContext } from './DarkModeContext';
+import { DarkModeContext } from './DarkModeContext'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ChevronRight, Github, Twitter, Moon, Sun } from "lucide-react"
+import { ChevronRight, Github, Twitter, Moon, Sun, Loader2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { login, register } from './api.cjs'
 
 export default function LoginPage() {
-  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState('login');
-  const navigate = useNavigate();
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const [activeTab, setActiveTab] = useState('login')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
+    e.preventDefault()
+    setError('')
+    setIsLoading(true)
     try {
-      await login(email, password);
-      navigate('/home');
+      await login(email, password)
+      navigate('/home')
     } catch (err) {
-      setError(err.message || 'Login failed');
+      setError(err.message || 'Login failed')
+      setIsLoading(false)
     }
-  };
+  }
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setError('');
+    e.preventDefault()
+    setError('')
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
+      setError('Passwords do not match')
+      return
     }
+    setIsLoading(true)
     try {
-      await register(email, password);
-      setError('Registration successful. Please log in.');
-      setActiveTab('login');
-      setPassword('');
-      setConfirmPassword('');
+      await register(email, password)
+      setError('Registration successful. Please log in.')
+      setActiveTab('login')
+      setPassword('')
+      setConfirmPassword('')
     } catch (err) {
-      setError(err.message || 'Registration failed');
+      setError(err.message || 'Registration failed')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -111,9 +117,18 @@ export default function LoginPage() {
                       className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-purple-400 focus:border-purple-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-purple-500 focus:border-purple-500'}`} 
                     />
                   </div>
-                  <Button type="submit" className={`w-full ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white font-semibold`}>
-                    Login
-                    <ChevronRight className="ml-2 h-4 w-4" />
+                  <Button type="submit" className={`w-full ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white font-semibold`} disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Please wait
+                      </>
+                    ) : (
+                      <>
+                        Login
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </TabsContent>
@@ -150,9 +165,18 @@ export default function LoginPage() {
                       className={`${darkMode ? 'bg-gray-700 border-gray-600 text-gray-100 focus:ring-purple-400 focus:border-purple-400' : 'bg-white border-gray-300 text-gray-900 focus:ring-purple-500 focus:border-purple-500'}`} 
                     />
                   </div>
-                  <Button type="submit" className={`w-full ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white font-semibold`}>
-                    Create Account
-                    <ChevronRight className="ml-2 h-4 w-4" />
+                  <Button type="submit" className={`w-full ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white font-semibold`} disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Please wait
+                      </>
+                    ) : (
+                      <>
+                        Create Account
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </TabsContent>

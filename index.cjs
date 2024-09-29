@@ -11,7 +11,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SECRET_KEY = process.env.JWT_SECRET_KEY || 'fallback_secret_key';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const FRONTEND_URL = 'https://skillmetric.netlify.app' || 'http://localhost:5173';
 
 // Middleware
 app.use(express.json());
