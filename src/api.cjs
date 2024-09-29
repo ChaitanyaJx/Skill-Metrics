@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL =  "https://skill-metrics.onrender.com/"  // Replace with your backend URL
+const API_URL = 'https://skill-metrics.onrender.com/';
+// const API_URL = "http://localhost:3000/";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -9,7 +10,6 @@ const api = axios.create({
   },
 });
 
-// Add a request interceptor to include the token in every request
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('authToken');
@@ -29,7 +29,7 @@ export const login = async (email, password) => {
     localStorage.setItem('authToken', response.data.token);
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    handleApiError(error, 'login');
   }
 };
 
@@ -38,17 +38,16 @@ export const register = async (email, password) => {
     const response = await api.post('/register', { email, password });
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    handleApiError(error, 'registration');
   }
 };
 
 export const logout = async () => {
   try {
-    await api.post('/logout'); // If your backend requires a logout request
+    await api.post('/logout');
     localStorage.removeItem('authToken');
   } catch (error) {
     console.error('Logout failed:', error);
-    // Even if the server request fails, we still want to remove the token
     localStorage.removeItem('authToken');
   }
 };
@@ -58,7 +57,24 @@ export const fetchProtectedData = async () => {
     const response = await api.get('/protected');
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    handleApiError(error, 'fetching protected data');
+  }
+};
+
+const handleApiError = (error, action) => {
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    console.error(`Error during ${action}:`, error.response.data);
+    throw error.response.data || { message: `An error occurred during ${action}` };
+  } else if (error.request) {
+    // The request was made but no response was received
+    console.error(`No response received during ${action}:`, error.request);
+    throw { message: 'No response received from the server' };
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    console.error(`Error setting up the request during ${action}:`, error.message);
+    throw { message: 'Error setting up the request' };
   }
 };
 

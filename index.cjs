@@ -7,11 +7,12 @@ const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
+const validator = require('validator');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SECRET_KEY = process.env.JWT_SECRET_KEY || 'fallback_secret_key';
-const FRONTEND_URL =  'http://localhost:5173';
+const FRONTEND_URL = 'http://localhost:5173';
 
 // Middleware
 app.use(express.json());
@@ -23,10 +24,20 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Ensure the db directory exists
+const dbDir = path.join(__dirname, 'db');
+if (!fs.existsSync(dbDir)){
+    fs.mkdirSync(dbDir);
+}
+
 // Read user credentials from JSON file
 const getUsersFromFile = () => {
   try {
     const filePath = path.join(__dirname, 'db', 'usersCred.json');
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, '[]');
+      return [];
+    }
     const rawData = fs.readFileSync(filePath);
     return JSON.parse(rawData);
   } catch (error) {
@@ -71,12 +82,6 @@ passport.use(
   })
 );
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Internal Server Error', error: err.message });
-});
-
 // Routes
 app.post('/register', async (req, res, next) => {
   try {
@@ -112,6 +117,7 @@ app.post('/register', async (req, res, next) => {
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.error('Registration error:', error);
     next(error);
   }
 });
@@ -146,6 +152,12 @@ app.post('/logout', passport.authenticate('jwt', { session: false }), (req, res)
 
 app.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({ message: 'You have access to this protected route', user: req.user });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
 
 // Handle 404 errors
