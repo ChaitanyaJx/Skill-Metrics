@@ -15,6 +15,8 @@ import SettingsPage from './profilePage/settingsPage'
 import { DarkModeProvider } from './DarkModeContext'
 import SkillPage from './skillPage'
 import CareerTest from './careerTest'
+import ProtectedRoute from './ProtectedRoute'
+
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/questions",
-    element: <Questions />,
+    element: <ProtectedRoute><Questions /></ProtectedRoute>,
   },
   {
     path: "/pricing",
