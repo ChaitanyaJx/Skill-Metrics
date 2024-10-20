@@ -29,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage />,
+    element: <ProtectedRoute><HomePage /></ProtectedRoute>,
   },
   {
     path: "/questions",
@@ -37,39 +37,39 @@ const router = createBrowserRouter([
   },
   {
     path: "/pricing",
-    element: <PricingPage />,
+    element: <ProtectedRoute><PricingPage /></ProtectedRoute>,
   },
   {
     path: "/support",
-    element: <SupportPage />,
+    element: <ProtectedRoute><SupportPage /></ProtectedRoute>,
   },
   {
     path: "/resources",
-    element: <ResourcesPage />,
+    element: <ProtectedRoute><ResourcesPage /></ProtectedRoute>,
   },
   {
     path: "/score",
-    element: <ScoreCard />,
+    element: <ProtectedRoute><ScoreCard /></ProtectedRoute>,
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
+    element: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
   },
   {
     path: "/profile/contribute",
-    element: <ContributePage />,
+    element: <ProtectedRoute><ContributePage /></ProtectedRoute>,
   },
   {
     path: "/profile/settings",
-    element: <SettingsPage />,
+    element: <ProtectedRoute><SettingsPage /></ProtectedRoute>,
   },
   {
     path: "/skilltest",
-    element: <SkillPage />,
+    element: <ProtectedRoute><SkillPage /></ProtectedRoute>,
   },
   {
     path: "/careertest",
-    element: <CareerTest />,
+    element: <ProtectedRoute><CareerTest /></ProtectedRoute>,
   },
   {
     path: "*",
@@ -86,3 +86,4 @@ const Paths = () => {
 }
 
 export default Paths;
+

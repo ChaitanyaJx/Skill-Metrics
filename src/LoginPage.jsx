@@ -62,7 +62,7 @@ export default function LoginPage() {
             SkillMetrics
           </span>
           <nav className="hidden md:flex space-x-6">
-            <NavButton to="/home" label="Home"/>
+            <NavButton to="/" label="Home"/>
             <NavButton to="/pricing" label="Pricing" />
             <NavButton to="/support" label="Support" />
             <NavButton to="/login" label="Login" active/>
