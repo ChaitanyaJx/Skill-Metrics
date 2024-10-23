@@ -9,7 +9,7 @@ import PricingPage from './pricingPage'
 import SupportPage from './supportPage'
 import ResourcesPage from './resourcesPage'
 import ScoreCard from './scoreCard'
-import ProfilePage from './profilePage'
+import ProfilePage from './profilePage/profilePage'
 import ContributePage from './profilePage/ContributePage'
 import SettingsPage from './profilePage/settingsPage'
 import { DarkModeProvider } from './DarkModeContext'
@@ -30,10 +30,6 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <ProtectedRoute><HomePage /></ProtectedRoute>,
-  },
-  {
-    path: "/questions",
-    element: <ProtectedRoute><Questions /></ProtectedRoute>,
   },
   {
     path: "/pricing",
@@ -72,9 +68,13 @@ const router = createBrowserRouter([
     element: <ProtectedRoute><CareerTest /></ProtectedRoute>,
   },
   {
-    path: "*",
-    element: <App />,
-  }
+    path: "/questions/:field", // Changed from "/questions" to "/questions/:field"
+    element: <ProtectedRoute><Questions /></ProtectedRoute>,
+  },
+  // {
+  //   path: "*",
+  //   element: <App />,
+  // }
 ])
 
 const Paths = () => {

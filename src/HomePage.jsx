@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useState, useContext, useEffect } from 'react'
 import { DarkModeContext } from '/src/DarkModeContext'
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,13 +14,30 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState('home')
 
   const careers = [
-    { name: "Electronics and Communication Engineering", icon: <Cpu className="h-6 w-6" />, description: "Design and develop cutting-edge communication systems and electronics" },
-    { name: "Mechanical Engineering", icon: <Cog className="h-6 w-6" />, description: "Innovate in design, analysis, and manufacturing of mechanical systems" },
-    { name: "Computer Science Engineering", icon: <Code className="h-6 w-6" />, description: "Build the next generation of software and computational systems" },
-    { name: "Artificial Intelligence and Data Science", icon: <TrendingUp className="h-6 w-6" />, description: "Drive breakthroughs in AI and harness data to generate insights" },
-    { name: "Civil Engineering", icon: <Building className="h-6 w-6" />, description: "Design and oversee infrastructure projects, ensuring safety and sustainability" },
-    { name: "Electrical Engineering", icon: <Bolt className="h-6 w-6" />, description: "Power the world with innovative electrical systems and solutions" },
-    { name: "Biomedical Engineering", icon: <Heart className="h-6 w-6" />, description: "Integrate technology with healthcare to enhance medical devices and solutions" },
+    { 
+      name: "Electrical Engineering", 
+      icon: <Cpu className="h-4 w-4" />, 
+      description: "Design and develop cutting-edge communication systems and electronics",
+      link: "/questions/ece"
+    },
+    { 
+      name: "Mechanical Engineering", 
+      icon: <Cog className="h-6 w-6" />, 
+      description: "Innovate in design, analysis, and manufacturing of mechanical systems",
+      link: "/questions/mech"
+    },
+    { 
+      name: "Computer Science Engineering", 
+      icon: <Code className="h-6 w-6" />, 
+      description: "Build the next generation of software and computational systems",
+      link: "/questions/cse"
+    },
+    { 
+      name: "Artificial Intelligence and Data Science", 
+      icon: <TrendingUp className="h-6 w-6" />, 
+      description: "Drive breakthroughs in AI and harness data to generate insights",
+      link: "/questions/aids"
+    },
   ];
 
   useEffect(() => {
@@ -106,27 +121,6 @@ export default function HomePage() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ type: "spring", stiffness: 100 }}
-            className={`md:hidden ${darkMode ? 'bg-gray-800' : 'bg-white'} p-4`}
-          >
-            <NavLink to="/home">Home</NavLink>
-            <NavLink to="/careers">Careers</NavLink>
-            <NavLink to="/assessments">Assessments</NavLink>
-            <NavLink to="/resources">Resources</NavLink>
-            <ProfileIcon darkMode={darkMode} />
-            <Button variant="ghost" onClick={toggleDarkMode} className="mt-2">
-              {darkMode ? <Sun className="h-5 w-5 text-yellow-400" /> : <Moon className="h-5 w-5 text-purple-600" />}
-            </Button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <main className={`flex-grow w-full flex flex-col justify-start pt-8`}>
         <motion.section 
           id="home" 
@@ -181,7 +175,7 @@ export default function HomePage() {
                 key={index}
                 variants={itemVariants}
               >
-                <Link to="/questions">
+                <Link to={career.link}>
                   <Card className={`${darkMode ? 'bg-gray-800 bg-opacity-90 border-gray-700' : 'bg-white bg-opacity-90 border-purple-200'} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl w-full overflow-hidden`}>
                     <CardContent className="p-6">
                       <div className={`mb-4 p-4 ${darkMode ? 'bg-purple-600' : 'bg-gradient-to-r from-pink-500 to-purple-600'} rounded-full inline-block`}>

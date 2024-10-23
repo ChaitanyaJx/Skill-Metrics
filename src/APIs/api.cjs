@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://skillmetrics.onrender.com/' || 'http://localhost:3000/';
+// const API_URL = 'https://skillmetrics.onrender.com/';
+const API_URL = 'http://localhost:3000/';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -77,4 +78,24 @@ const handleApiError = (error, action) => {
   }
 };
 
+export const getQuestions = async (field) => {
+  try {
+    console.log(`Attempting to fetch questions for field: ${field}`);
+    console.log(`Request URL: ${api.defaults.baseURL}/questions/${field}`);
+    const response = await api.get(`/questions/${field}`);
+    console.log('Response received:', response.data);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error('Server response error:', {
+        status: error.response.status,
+        data: error.response.data,
+        url: error.config.url
+      });
+    } else {
+      console.error('Request error:', error.message);
+    }
+    throw error;
+  }
+};
 export default api;

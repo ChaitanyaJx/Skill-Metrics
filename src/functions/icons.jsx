@@ -8,7 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { User, Settings, LogOut, FileText } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '/src/api.cjs';
+import { logout } from '/src/APIs/api.cjs';
 import { DarkModeContext } from '/src/DarkModeContext';
 
 export const ProfileIcon = () => {

@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronRight, Github, Twitter, Moon, Sun, Loader2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { login, register } from './api.cjs'
+import { login, register } from './APIs/api.cjs'
 
 export default function LoginPage() {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [activeTab, setActiveTab] = useState('login')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
@@ -23,6 +24,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
+    setSuccessMessage('')
     setIsLoading(true)
     try {
       await login(email, password)
@@ -36,6 +38,7 @@ export default function LoginPage() {
   const handleRegister = async (e) => {
     e.preventDefault()
     setError('')
+    setSuccessMessage('')
     if (password !== confirmPassword) {
       setError('Passwords do not match')
       return
@@ -43,7 +46,7 @@ export default function LoginPage() {
     setIsLoading(true)
     try {
       await register(email, password)
-      setError('Registration successful. Please log in.')
+      setSuccessMessage('Registration successful. Please log in.')
       setActiveTab('login')
       setPassword('')
       setConfirmPassword('')
@@ -186,6 +189,11 @@ export default function LoginPage() {
             {error && (
               <div className={`mt-4 p-2 text-center ${darkMode ? 'bg-red-900 text-red-200' : 'bg-red-100 text-red-800'} rounded`}>
                 {error}
+              </div>
+            )}
+            {successMessage && (
+              <div className={`mt-4 p-2 text-center ${darkMode ? 'bg-green-900 text-green-200' : 'bg-green-100 text-green-800'} rounded`}>
+                {successMessage}
               </div>
             )}
           </CardContent>

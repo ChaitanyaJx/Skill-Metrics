@@ -105,7 +105,6 @@ export default function PricingPage() {
         </div>
       </main>
       
-      <Footer />
     </div>
   )
 }
@@ -159,34 +158,5 @@ function PricingCard({ icon, title, price, description, features, ctaText, ctaLi
         </Button>
       </CardFooter>
     </Card>
-  )
-}
-
-function Footer() {
-  const { darkMode } = useContext(DarkModeContext)
-
-  return (
-    <footer className={darkMode ? 'bg-gray-900' : 'bg-gray-100'}>
-      <div className="container mx-auto px-4 py-8 flex flex-wrap justify-between items-center">
-        <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          © 2024 SkillMetrics. All rights reserved.
-        </div>
-        <div className="flex space-x-4 mt-4 md:mt-0">
-          <FooterLink href="#" label="Privacy Policy" />
-          <FooterLink href="#" label="Terms of Service" />
-          <FooterLink href="#" label="Contact Us" />
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-function FooterLink({ href, label }) {
-  const { darkMode } = useContext(DarkModeContext)
-
-  return (
-    <a href={href} className={`text-sm ${darkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-600 hover:text-gray-800'} transition-colors`}>
-      {label}
-    </a>
   )
 }
